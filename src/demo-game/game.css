@@ -1,0 +1,228 @@
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	height: 100%;
+}
+.board {
+	display: grid;
+	grid-row: 1 / 3;
+	place-self: center;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-columns: repeat(8, 1fr);
+	width: 512px;
+	border: 2px solid slateblue;
+	background: grey;
+	border-radius: 2px;
+}
+.square {
+	position: relative;
+	width: 64px;
+	height: 64px;
+	background: white;
+	border-radius: 2px;
+	overflow: hidden;
+}
+.rlt {
+	position: absolute;
+	width: 88px;
+	height: 88px;
+	border-radius: 50%;
+	background: red;
+}
+.rlt::after {
+	content: "";
+	position: absolute;
+	bottom: 24px;
+	left: 24px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: white;
+}
+.nF {
+	position: absolute;
+	background-image: linear-gradient(red 0, red 40%, gray 50%, gray 0);
+	width: 24px;
+	height: 128px;
+	left: 20px;
+	animation: n-enter .5s forwards;
+}
+.wF {
+	position: absolute;
+	background-image: linear-gradient(to right, red 0, red 40%, gray 50%, gray 0);
+	width: 128px;
+	height: 24px;
+	bottom: 20px;
+	animation: w-enter .5s forwards;
+}
+.sF {
+	position: absolute;
+	background-image: linear-gradient(to top, red 0, red 40%, gray 50%, gray 0);
+	width: 24px;
+	height: 128px;
+	left: 20px;
+	animation: s-enter .5s forwards;
+}
+.eF {
+	position: absolute;
+	background-image: linear-gradient(to left, red 0, red 40%, gray 50%, gray 0);
+	width: 128px;
+	height: 24px;
+	animation: e-enter .5s forwards;
+	bottom: 20px;
+}
+
+@keyframes n-enter {
+	from { bottom: -128px; }
+	to { bottom: -64px; }
+}
+@keyframes n-out {
+	from { bottom: -64px; }
+	to { bottom: 0; }
+}
+@keyframes w-enter {
+	from { left: 64px; }
+	to { left: 0; }
+}
+@keyframes w-out {
+	from { left: 0; }
+	to { left: -64px; }
+}
+@keyframes s-enter {
+	from { bottom: 64px; }
+	to { bottom: 0; }
+}
+@keyframes s-out {
+	from { bottom: 0; }
+	to { bottom: -64px; }
+}
+@keyframes e-enter {
+	from { left: -128px; }
+	to { left: -64px; }
+}
+@keyframes e-out {
+	from { left: -64px; }
+	to { left: 0; }
+}
+
+.nL {
+	left: -44px;
+	bottom: -44px;
+	background-image: conic-gradient(
+		white 25%, red 25%, red 45%, gray 50%, gray 75%, white 75%
+	);
+}
+.nR {
+	left: 20px;
+	bottom: -44px;
+	background-image: conic-gradient(
+		white 25%, gray 25%, gray 50%, red 55%, red 75%, white 75% 
+	);
+}
+.wL {
+	left: 20px;
+	bottom: -44px;
+	background-image: conic-gradient(
+		red 0%, red 20%, gray 25%, gray 50%, white 50%, white 100%
+	);
+}
+.wR {
+	left: 20px;
+	bottom: 20px;
+	background-image: conic-gradient(
+		gray 0%, gray 25%, red 30%, red 50%, white 50%, white 100%
+	);
+}
+.sL {
+	left: 20px;
+	bottom: 20px;
+	background-image: conic-gradient(
+		gray 0%, gray 25%, white 25%, white 75%, red 75%, red 95%
+	);
+}
+.sR {
+	left: -44px;
+	bottom: 20px;
+	background-image: conic-gradient(
+		red 5%, red 25%, white 25%, white 75%, gray 75%, gray 100%
+	);
+}
+.eL {
+	left: -44px;
+	bottom: 20px;
+	background-image: conic-gradient(
+		white 0%, white 50%, red 50%, red 70%, gray 75%, gray 100%
+	);
+}
+.eR {
+	left: -44px;
+	bottom: -44px;
+	background-image: conic-gradient(
+		white 0%, white 50%, gray 50%, gray 75%, red 80%, red 100%
+	);
+}
+
+.turnL {
+	transition: transform .5s;
+	transform: rotate(-90deg);
+}
+.turnR {
+	transition: transform .5s;
+	transform: rotate(90deg);
+}
+
+.inputPad {
+	display: block;
+	place-self: center;
+	margin: 30px 40px;
+	border: 1px solid slategray;
+	text-align: center;
+	background: greenyellow;
+	width: 200px;
+	height: 140px;
+}
+.inputPad:hover::after {
+	content: 'Now You Can make Input \A Using Up, Left, Right arrow';
+	white-space: pre;
+}
+
+.gameInfo {
+	display: block;
+	place-self: center;
+	text-align: center;
+	font-size: 18px;
+	width: auto;
+	max-width: 600px;
+}
+
+.alertLayer {
+	position: absolute;
+	display: grid;
+	grid-template-columns: auto;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	color: blue;
+	text-shadow: 0 0 2px gray;
+	background: rgba(218, 112, 214, .5);
+}
+.alertLayer>div {
+	place-self: center;
+	width: 640px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 32px;
+	white-space: pre;
+	background: rgba(240, 240, 0, .5);
+}
+.alertLayer>div:first-child {
+	font-size: 44px;
+}
+
+@media only screen and (max-width: 750px) {
+	.main {
+		grid-template-columns: auto;
+	}
+}

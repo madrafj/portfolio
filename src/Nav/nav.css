@@ -1,0 +1,18 @@
+.nav {
+	display: inline-block;
+	width: 200px;
+	padding: 8px 12px;
+	background: #264653;
+	color: whitesmoke;
+	font-size: 20px;
+	text-decoration: none;
+}
+.nav:hover {
+	background: #f4a261;
+}
+.navActive {
+	background: #2a9d8f;
+	color: white;
+	padding-top: 12px;
+	border-radius: 4px 4px 0 0;
+}
